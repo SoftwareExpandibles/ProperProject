@@ -1,0 +1,37 @@
+﻿@model IEnumerable<BusinessModel.Product>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<div>
+    <table cellpadding="2" cellspacing="2" border="1">
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Price
+            </th>
+            <th>
+                Photo
+            </th>
+        </tr>
+        @foreach (var product in ViewBag.ListProducts)
+        {
+            <tr>
+                <td>@product.Title</td>
+                <td>R @product.SellingPrice</td>
+                <td>
+                    <img src="@Url.Content("~/Content")/Images/@product.Photo"
+                         width="120" height="100" class="glyphicon-picture" />
+                    <input type="hidden" class="productId" value="@product.ProductId" />
+                </td>
+                <td align="center">@Html.ActionLink("Buy", "Buy", "Cart", new { id = product.ProductId }, null)</td>
+            </tr>
+        }
+    </table>
+</div>
+
